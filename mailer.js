@@ -4,9 +4,10 @@ const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "freefiregamingop283@gmail.com",       // 🔹 replace with your Gmail
-    pass: "nyik cnhj wiwd ximc",         // 🔹 use Gmail App Password (not normal password)
-  },
+  user: process.env.EMAIL_USER,
+  pass: process.env.EMAIL_PASS,
+}
+,
 });
 
 // function to send OTP email
