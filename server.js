@@ -71,11 +71,12 @@ app.post("/verify-otp", async (req, res) => {
     await user.save();
 
     // OTP valid → JWT token
-    const token = jwt.sign(
-      { email: user.email },
-      "SECRET123",
-      { expiresIn: "1h" }
-    );
+   const token = jwt.sign(
+  { email: user.email },
+  process.env.JWT_SECRET,   // ✅ from env
+  { expiresIn: "1h" }
+);
+
 
     // ✅ Return name + email + token
     res.json({ 
