@@ -6,15 +6,14 @@ const User = require("./user");
 const Note = require("./note");
 const verifyToken = require("./jwtMiddleware");
 const sendOtpEmail = require("./mailer");
+require("dotenv").config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 // ✅ Connect MongoDB
-mongoose.connect("mongodb+srv://noteUser:notePass123@cluster0.wpurrgq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-  .then(() => console.log("✅ MongoDB Connected"))
-  .catch(err => console.log("❌ Mongo Error: ", err));
+mongoose.connect(process.env.MONGO_URI).then(() => console.log("✅ MongoDB Connected")).catch(err => console.log("❌ Mongo Error: ", err));
 
 // ✅ Test route
 app.get("/", (req, res) => {
